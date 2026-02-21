@@ -6,58 +6,33 @@
 ![Twilio](https://img.shields.io/badge/Twilio-Voice-F22F46?style=flat-square&logo=twilio&logoColor=white)
 ![Repo](https://img.shields.io/badge/Source-Private-orange?style=flat-square)
 
-**A full-featured WebRTC softphone and SMS dashboard built with BulkVS telephony and Twilio Voice SDK.** Features in-browser calling, a visual dialpad, DTMF support, and mass SMS broadcasting.
+**I built a second dialer platform using BulkVS telephony — a full WebRTC softphone with DTMF support, visual dialpad, and mass SMS.** This was my proving ground before building the larger Twilio platform and Ringora.
 
 ---
 
-## Features
+## Why I Built Two Dialers
 
-### WebRTC Softphone
-- Full in-browser calling — no phone hardware needed
-- Visual dialpad (0–9, *, #) with real-time call status
-- Mute/unmute during active calls
-- DTMF keypad for sending tones (IVR navigation, conference PINs)
-- Clean call controls with status indicators (Connecting → Ringing → In Call)
+I built this one first to learn the hard parts of browser-based telephony — WebRTC audio streams, DTMF tone handling, call state management. Once I had this working, I had the foundation to build the more complex Twilio platform and eventually Ringora's full power dialer.
+
+## What I Built
+
+### Full WebRTC Softphone
+- **In-browser calling** via Twilio Voice SDK — no phone, no plugins, just a browser and a mic
+- **Visual dialpad** (0–9, *, #) that feels like a real phone
+- **Real-time call status** tracking: Connecting → Ringing → In Call → Ended
+- **Mute/unmute** toggle during active calls
+- **DTMF keypad** — send touch-tones during calls for IVR navigation, conference PINs, and voicemail systems. This was the hardest part — you need to send tones both to the remote party AND play them locally for user feedback.
 
 ### SMS Dashboard
-- **Single SMS** — Send individual messages with character count (160 max)
-- **Mass SMS** — CSV upload for bulk broadcasting with progress bar
-- Preview data before sending
-- Delivery results summary with success/failure breakdown
-
-## Architecture
-
-```
-┌────────────────────────────────────────┐
-│          Next.js Frontend               │
-│   Softphone │ Dialpad │ SMS Dashboard   │
-│        Twilio Voice SDK (WebRTC)        │
-└──────────────────┬─────────────────────┘
-                   │
-          ┌────────┼────────┐
-          ▼        ▼        ▼
-    ┌──────────┐ ┌──────┐ ┌──────────┐
-    │ Voice    │ │ SMS  │ │ BulkVS   │
-    │ Token    │ │ API  │ │ Telephony│
-    │ Endpoint │ │      │ │          │
-    └──────────┘ └──────┘ └──────────┘
-```
+- **Single SMS** with character count (160 chars = 1 segment)
+- **Mass SMS** from CSV uploads with real-time progress bar
+- Preview data before sending, detailed results after
+- Delivery status tracking per message
 
 ## Tech Stack
 
-- **Framework:** Next.js, React, TypeScript
-- **Voice:** Twilio Voice SDK (WebRTC), BulkVS telephony
-- **SMS:** Twilio Programmable Messaging
-- **UI:** Real-time status updates, progress tracking
-
-## Skills Demonstrated
-
-- WebRTC implementation for browser-based telephony
-- Twilio Voice SDK client-side integration
-- DTMF tone handling during active calls
-- CSV parsing and bulk operation management
-- Real-time progress tracking UI
+`Next.js` · `TypeScript` · `Twilio Voice SDK` · `WebRTC` · `BulkVS` · `React`
 
 ---
 
-> *This is a showcase page for a private repository. Source code available upon request for verified opportunities.*
+> *Closed source. This was my learning project for telephony — the concepts here evolved into the Twilio Platform and Ringora.*
